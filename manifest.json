@@ -1,0 +1,23 @@
+{
+  "short_name": "Si-KEPO",
+  "name": "Si-KEPO",
+   "icons": [
+    {
+      "src": "assets/192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "background_color": "#3367D6",
+  "display": "standalone",
+  "scope": "/sikepo/",
+  "theme_color": "#3367D6",
+  "description": "Si-KEPO",
+  "start_url":"/sikepo/"
+}
