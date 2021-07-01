@@ -1,5 +1,5 @@
 const filesToCache = [
-    ''
+    '/'
 ];
 
 const staticCacheName = 'pages-cache-v3';
@@ -17,38 +17,21 @@ self.addEventListener('install', event => {
     );
 });
 
-this.addEventListener('activate', function(event) {
-  var cachesToKeep = ['v2'];
-
-  event.waitUntil(
-    caches.keys().then(function(keyList) {
-      return Promise.all(keyList.map(function(key) {
-        if (cachesToKeep.indexOf(key) === -1) {
-          return caches.delete(key);
-        }
-      }));
-    })
-  );
-});
-
 self.addEventListener('activate', event => {
     //console.log('Activating service worker');
-    var cacheWhitelist = [staticCacheName];
+    const cacheWhitelist = [staticCacheName];
     // nama cache disimpan dalam bentuk array
     event.waitUntil(
         caches.keys().then(cacheNames => {
             return Promise.all(cacheNames.map(cacheName => {
-                        	if (cacheWhitelist.indexOf(cacheName) === -1) {
-                        	    return caches.delete(cacheName);
-                        	}
-                		})
+                          if (cacheWhitelist.indexOf(cacheName) === -1) {return caches.delete(cacheName);}
+                    })
             );
         })
     );
 });
 
 self.addEventListener('fetch', event => {
-
     //console.log('Fetch event for ', event.request.url);
     event.respondWith(
         caches.match(event.request)
@@ -60,7 +43,7 @@ self.addEventListener('fetch', event => {
                       //jika data yg diminta ada berikan ke client
                   }
                   //console.log('Network request for ', event.request.url);
-                  return fetch(event.request,{credentials: 'include'})
+                  return fetch(event.request)
                             .then(response => {
                                 if (response.status === 404) {
                                     return caches.match('404.html');
@@ -77,5 +60,4 @@ self.addEventListener('fetch', event => {
                   return caches.match('offline.html');
               })
     );
-    
 });

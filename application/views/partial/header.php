@@ -14,8 +14,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <title>Si-KEPO || Sistem Informasi Capaian Kinerja dan Evaluasi Pencapaian Output</title>
     <link rel="icon" type="image/png" sizes="32x32" href="<?php echo base_url();?>assets/favicon.png">
 
+
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="<?php echo base_url();?>assets/bootstrap4/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/addtohomescreen.css">
+<script src="<?php echo base_url();?>assets/src/addtohomescreen.js"></script>
+<script>
+addToHomescreen();
+</script>
 
     <!-- Favicons -->
 
@@ -43,7 +49,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   </head>
   <body>
         <script>
-        var cpath = "<?php echo base_url();?>";
+        var cpath = "<?php echo base_url();?>sikepo";
     if ('serviceWorker' in navigator) {
       console.log('CLIENT: service worker registration in progress.');
       navigator.serviceWorker.register(cpath+'sw.js').then(function() {
